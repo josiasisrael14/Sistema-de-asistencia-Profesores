@@ -1,0 +1,1183 @@
+﻿@*@model IEnumerable<REGISTROASISTENCIA.Models.entidad>*@
+
+
+@*@model REGISTROASISTENCIA.Controllers.escritorioController;*@
+
+
+@*@{
+
+
+        var Lst = ViewBag.listas as List<REGISTROASISTENCIA.Models.entidad>;
+
+    }*@
+
+
+@{
+
+    //public static byte[] imagen3 = new byte[0];
+    List<SelectListItem> items = (List<SelectListItem>)ViewBag.item;
+
+    List<SelectListItem> item2 = (List<SelectListItem>)ViewBag.item2;
+    List<SelectListItem> item3h = (List<SelectListItem>)ViewBag.itemH;
+
+}
+@section ESTILOS{
+
+    <link href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-contextmenu/2.9.2/jquery.contextMenu.min.css"/>
+     <link  href="https://cdn.datatables.net/buttons/2.3.2/css/buttons.dataTables.min.css" rel="stylesheet"/>
+      <link rel="stylesheet" href="administrador/context-menu.min.css">
+}
+
+@using Microsoft.AspNetCore.Http;
+@ViewBag.entidad;
+
+@*@ViewBag.listas;*@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <style>
+        .sidebar-dark-primary{
+
+            background: #455279 !important;
+
+
+
+
+        }
+
+        #modalCajaMov{
+           /* background-color:rgba(0,0,0,0.5)!important;*/
+
+         /*  background-color:white;*/
+
+      
+        }
+
+        
+
+  .input_container{
+  display: flex;
+  gap: 12px;
+}
+
+.input_container input{
+  width: 80%;
+}
+    .btn-excel{
+
+      background-color:#198754 !important;
+      color: white !important;
+  }
+
+
+
+  .orange{
+  
+    background-color:red !important;
+  
+  }
+
+  .btn-amarillo{
+
+       background-color:yellow !important;
+
+  }
+  .filledInputs{
+  background-color: red;
+}
+
+    </style>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AdminLTE 3 | Dashboard 2</title>
+
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+    <!-- overlayScrollbars -->
+    <link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="administrador/dist/css/adminlte.min.css">
+    <link rel="stylesheet" href="css/jquery.dataTables.min.css">
+
+  
+
+    @*<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">*@
+</head>
+<body class="hold-transition  sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+    <div class="wrapper">
+
+        <!-- Preloader -->
+        <div class="preloader flex-column justify-content-center align-items-center">
+@*            <img class="animation__wobble" src="administrador/dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
+*@        </div>
+
+        <!-- Navbar -->
+        <nav class="main-header navbar navbar-expand navbar-dark">
+            <!-- Left navbar links -->
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+                </li>
+                <li class="nav-item d-none d-sm-inline-block">
+                    @*<a href="index3.html" class="nav-link">Homes</a>*@
+                </li>
+                <li class="nav-item d-none d-sm-inline-block">
+                    @*<a href="#" class="nav-link">Contact</a>*@
+                </li>
+            </ul>
+
+
+
+            <!-- Right navbar links -->
+            <ul class="navbar-nav ml-auto">
+                <!-- Navbar Search -->
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="navbar-search" href="#" role="button">
+                       @* <i class="fas fa-search"></i>*@
+                    </a>
+                    <div class="navbar-search-block">
+                        <form class="form-inline">
+                            <div class="input-group input-group-sm">
+                                <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
+                                <div class="input-group-append">
+                                    <button class="btn btn-navbar" type="submit">
+                                    
+                                        @*<i class="fas fa-search"></i>*@
+                                    </button>
+                                    <button class="btn btn-navbar" type="button" data-widget="navbar-search">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </li>
+
+                <!-- Messages Dropdown Menu -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link" data-toggle="dropdown" href="#">
+                       @* <i class="far fa-comments"></i>*@
+                       @* <span class="badge badge-danger navbar-badge">3</span>*@
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                        <a href="#" class="dropdown-item">
+                            <!-- Message Start -->
+                            <div class="media">
+                                <img src="administrador/dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
+                                <div class="media-body">
+                                    <h3 class="dropdown-item-title">
+                                        Brad Diesel
+                                        <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
+                                    </h3>
+                                    <p class="text-sm">Call me whenever you can...</p>
+                                    <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+                                </div>
+                            </div>
+                            <!-- Message End -->
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item">
+                            <!-- Message Start -->
+                            <div class="media">
+                                <img src="administrador/dist/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
+                                <div class="media-body">
+                                    <h3 class="dropdown-item-title">
+                                        John Pierce
+                                        <span class="float-right text-sm text-muted"><i class="fas fa-star"></i></span>
+                                    </h3>
+                                    <p class="text-sm">I got your message bro</p>
+                                    <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+                                </div>
+                            </div>
+                            <!-- Message End -->
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item">
+                            <!-- Message Start -->
+                            <div class="media">
+                                <img src="administrador/dist/img/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
+                                <div class="media-body">
+                                    <h3 class="dropdown-item-title">
+                                        Nora Silvester
+                                        <span class="float-right text-sm text-warning"><i class="fas fa-star"></i></span>
+                                    </h3>
+                                    <p class="text-sm">The subject goes here</p>
+                                    <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+                                </div>
+                            </div>
+                            <!-- Message End -->
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
+                    </div>
+                </li>
+                <!-- Notifications Dropdown Menu -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link" data-toggle="dropdown" href="#">
+                      @*  <i class="far fa-bell"></i>*@
+                       @* <span class="badge badge-warning navbar-badge">15</span>*@
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                        <span class="dropdown-item dropdown-header">15 Notifications</span>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item">
+                            <i class="fas fa-envelope mr-2"></i> 4 new messages
+                            <span class="float-right text-muted text-sm">3 mins</span>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item">
+                            <i class="fas fa-users mr-2"></i> 8 friend requests
+                            <span class="float-right text-muted text-sm">12 hours</span>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item">
+                            <i class="fas fa-file mr-2"></i> 3 new reports
+                            <span class="float-right text-muted text-sm">2 days</span>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="fullscreen" href="#" role="button">
+                       @* <i class="fas fa-expand-arrows-alt"></i>*@
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
+                        @*<i class="fas fa-th-large"></i>*@
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <!-- /.navbar -->
+        <!-- Main Sidebar Container -->
+        <aside class="main-sidebar sidebar-dark-primary elevation-4">
+            <!-- Brand Logo -->
+            <a href="index3.html" class="brand-link">
+@*                <img src="administrador/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+*@                <span class="brand-text font-weight-light">Web Genius J.P</span>
+            </a>
+
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <!-- Sidebar user panel (optional) -->
+                <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                    <div class="image">
+                        <img src="@ViewBag.imagen" class="img-circle elevation-2" style="width: 50px; height: 50px;" />
+                    </div>
+                    <div class="info">
+                        @*<a href="#" class="d-block">Alexander Pierce</a>*@
+                        @*<li>@TempData["nombre"].ToString();</li>*@
+                        <li>@Context.Session.GetString("sess_1")</li>
+<a class="btn btn btn-primary btn-xs" title="SALIR" href="@Url.Action("salirr","escritorio")"><span class="fas fa-sign-out-alt"></span> </a>
+                    </div>
+                </div>
+
+                <!-- SidebarSearch Form -->
+                <!--<div class="form-inline">
+                    <div class="input-group" data-widget="sidebar-search">
+                        <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
+                        <div class="input-group-append">
+                            <button class="btn btn-sidebar">
+                                <i class="fas fa-search fa-fw"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>-->
+                <!-- Sidebar Menu -->
+                <nav class="mt-2">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                        <!-- Add icons to the links using the .nav-icon class
+                        with font-awesome or any other icon font library -->
+                           <li class="header">MENÚ DE NAVEGACIÓN</li>
+                        <li class="nav-item menu-open">
+
+                          
+
+                            <ul class="nav nav-treeview">
+                               @*    <a href="#" class="nav-link active">
+                                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                                       
+                                        <p>Panel</p>
+                                    </a>*@
+
+                                <li class="nav-item">
+                                    <a href="@Url.Action("index","Panel")" class="nav-link active">
+                                       <i class="fa fa-home" aria-hidden="true"></i>
+                                        <p>Escritorio</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="@Url.Action("index","escritorio")" class="nav-link active">
+                                       <i class="fa fa-user" aria-hidden="true"></i>
+                                        <p>Usuarios</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="@Url.Action("index","departamento")" class="nav-link active">
+                                       <i class='fas fa-book-open'></i>
+                                        <p>Departamento</p>
+                                    </a>
+                                </li>
+                                    <li class="nav-item">
+                                    <a href="@Url.Action("index","Horario")" class="nav-link active">
+                                          <i class='fas fa-chalkboard-teacher'></i>
+                                        <p>Horarios</p>
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a href="@Url.Action("index","ListarAsistencia")" class="nav-link active">
+                                       <i class='fas fa-chalkboard-teacher'></i>
+                                        <p>Asistencias</p>
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                  <a href="@Url.Action("index","ReporteAsistencia")" class="nav-link active">
+                                         <i class="fa fa-file" aria-hidden="true"></i>
+                                        <p>reporte</p>
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </li>
+
+
+
+
+
+
+                    </ul>
+                </nav>
+                <!-- /.sidebar-menu -->
+            </div>
+            <!-- /.sidebar -->
+        </aside>
+
+
+        @if(ViewBag.entidad==null){
+
+          <div class="content-wrapper">
+
+
+
+
+      
+
+
+           @*<div id="jairo"></div>*@
+            <div class="container">
+               @* <a href="#modalCajaMov" class="btn btn-success" data-toggle="modal">AGREGAR</a>*@
+   <button type="button" class="btn btn-success btn-md" id="myBtn">AGREGAR</button>
+
+                
+      
+
+            </div>
+          <br />
+                <table id="tabla" class="table table-striped  table-condensed table-hover">
+                    <thead>
+                        <tr>
+                   
+                            <th>Id</th>
+                            <th>Nombre</th>
+                            <th>Apellidos</th>
+                            <th>Logeo</th>
+                            <th>Departamento</th>
+                            <th>Tipo</th>
+                          
+                          @*  <th>Estado</th>*@
+                         
+                            @*<th>UsuarioC</th>*@
+                         
+                            <th>Imagen</th>
+                            <th>Horarios</th>
+                             <th><i class='fas fa-edit'></i></th>
+                     <th><i class="fa fa-trash" aria-hidden="true"></i></th> 
+
+                
+
+                            @* <th>Editar</th>*@
+
+                        </tr>
+                    </thead>
+
+
+                    <tbody>
+                       
+
+                    </tbody>
+
+                  </table>
+
+
+
+
+        </div>
+
+
+
+
+        }
+        else{
+
+
+
+
+        
+
+
+
+
+        <div class="content-wrapper">
+
+
+
+
+      
+
+
+           @*<div id="jairo"></div>*@
+            <div class="container">
+               @* <a href="#modalCajaMov" class="btn btn-success" data-toggle="modal">AGREGAR</a>*@
+   <button type="button" class="btn btn-success btn-md" id="myBtn">AGREGAR</button>
+
+                
+       @*  <button type="button" id="btnagregar" data-toggle="modal" data-target="#myModal">Agregar</button>*@
+
+            </div>
+          <br />
+                <table id="tabla" class="table table-striped  table-condensed table-hover">
+                    <thead>
+                        <tr>
+                    
+                            <th>Id</th>
+                            <th>Nombre</th>
+                            <th>Apellidos</th>
+                            <th>Logeo</th>
+                            <th>Departamento</th>
+                            <th>Tipo</th>
+                          
+                          @*  <th>Estado</th>*@
+                         
+                            @*<th>UsuarioC</th>*@
+                         
+                            <th>Imagen</th>
+                            <th>Horarios</th>
+                             <th><i class='fas fa-edit'></i></th>
+                     <th><i class="fa fa-trash" aria-hidden="true"></i></th> 
+
+                
+
+                            @* <th>Editar</th>*@
+
+                        </tr>
+                    </thead>
+
+
+                    <tbody>
+                       
+
+                        @foreach (var item in ViewBag.entidad)
+                        {
+                          string imagen=Convert.ToBase64String(@item.imagen);
+                          string imagemDadosURL = string.Format("data:image/png;base64,{0}",imagen);
+                          ViewBag.DadosImagem = imagemDadosURL;
+                            <tr>
+                              <td>@item.idempleados</td> 
+                                <td>@item.nombre</td>
+                                <td>@item.apellidos</td>
+                                <td>@item.logeo</td>
+                                <td>@item.nombreD</td>
+                                <td>@item.nombreT</td>
+                              @*  <td>@item.estado</td>*@
+                              
+                             @*  <td>@item.usuariocreado</td>*@
+                              
+                  
+                      <td><img class="" src="@ViewBag.DadosImagem" height="50px" width="50px" /></td>
+                        <td>@item.horaentrada</td>
+                                            
+                                <td>
+ <a  class="btn btn btn-primary btn-xs context-menu-one" data-id= "@item.idempleados" onclick="return alertar('@item.idempleados')" href=""><i class='fas fa-edit'></i></a>
+
+
+@* <a  class="btn btn btn-primary btn-xs context-menu-one" id="menu_conte" onclick="return alertar('@item.idempleados')"  href=""><i class='fas fa-edit'></i></a>
+*@  
+                          @*<button onclick="return alertar('@item.idempleados')">editar</button>*@
+                          @*<button onclick=" alertar('siiiiii')">editar</button>*@
+
+                               </td>
+                               <td>
+ <a  class="btn btn btn-primary btn-xs context-menu-one  btn_eliminar" id="btn_eliminar" data-id= "@item.idempleados" ><i class="fa fa-trash" aria-hidden="true"></i</a>
+
+                               </td>
+
+                            </tr>
+                            
+                               
+                        }
+
+
+
+                    </tbody>
+
+                  </table>
+
+
+
+
+            </div>
+        }
+
+        <!-- Control Sidebar -->
+        <!-- <aside class="control-sidebar control-sidebar-dark">
+
+            Control sidebar content goes her
+
+        </aside>-->
+        <!-- /.control-sidebar -->
+        <!-- Main Footer -->
+        @*<footer class="main-footer">
+                <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
+                All rights reserved.
+                <div class="float-right d-none d-sm-inline-block">
+                    <b>Version</b> 3.2.0
+                </div>
+            </footer>*@
+
+
+
+
+
+    </div>
+
+
+
+    <div class="modal" tabindex="-1" id="modalCajaMov" role="dialog">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+                @*<form method="post" asp-controller="Libro" asp-action="create">*@
+                <div class="modal-header">
+                    <h5 class="modal-title">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                    <form class="" id="josias" method="post">
+
+            
+                        <div class="form-group">
+                            <label class="control-label">id</label>
+                            <input type="text" class="form-control" id="idempleados" name="idempleados" value="" readonly />
+                        </div>
+                        <div class="form-group">
+                            <label class="control-labell" id="respuesta_nombre" style="">nombre</label>
+                            <input type="text" class="form-control"  id="nombre" name="nombre" required/>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label" id="respuesta_apellidos">apellidos</label>
+                            <input type="text" class="form-control"  id="apellidos" name="apellidos" required/>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label" id="respuesta_logeo">login</label>
+                            <input type="text" class="form-control" required="required" id="logeo" name="logeo" />
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label" id="respuesta_password">Password</label>
+                            <input type="text" class="form-control" required="required" id="password" name="password" />
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label" id="respuesta_iddepartamento">departamento</label>
+  @Html.DropDownList("iddepartamento", items, "SELECCIONAR", new { @class = "form-control",@value="" ,@name="iddepartamento", @id="iddepartamento" ,@onchange="recuperar(this);"})
+                            
+                            
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label" id="respuesta_idtipoempleado">Tipo Empleado</label>
+                            @Html.DropDownList("idtipoempleado", item2, "SELECCIONAR", new { @class = "form-control" ,@name="idtipoempleado",@id="idtipoempleado"})
+
+
+                        </div>
+
+
+
+                            <div class="form-group">
+                            <label class="control-label" id="respuesta_idhorario">Horarios   </label>
+                            @Html.DropDownList("idhorario",item3h , "SELECCIONAR", new { @class = "form-control" ,@name="idhorario",@id="idhorario"})
+
+
+                        </div>
+
+
+
+                        <div class="form-group">
+                            <label class="control-label" id="respuesta_email">email</label>
+                            <input type="text" class="form-control" required="required" id="email" name="email" />
+
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label" id="respuesta_codigoempleado">codigo asistencia</label>
+   <button class="btn btn-info" type="button" onclick="generar(6);">Generar</button>
+
+    <input type="text" class="form-control" required="required" id="codigoempleado" name="codigoempleado" />
+
+                        </div>
+                        <div class="form-group">
+                            <label for="descripcion" id="respuesta_archivoImagen">Imagen</label>
+                            <input type="file" id="archivoImagen" name="archivoImagen" class="form-control input-sm" >
+                            <td><img src="" id="archivoImagenn" height="50px" width="50px"></td>
+
+                        </div>
+
+
+                    </form>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary" id="btnguardar">Guardar</button>
+                    <input type="button" class="btn btn-default" data-dismiss="modal" value="cancel" />
+                    <input type="hidden" name=" id" id="id" />
+                    @*<input type="submit" class="btn btn-success" value="Add" />*@
+                    @*<button type="button" class="btn btn-primary">Guardar</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">cancelar</button>*@
+                </div>
+                @*</form>*@
+
+            </div>
+        </div>
+    </div>
+
+   
+
+
+    <!-- ./wrapper -->
+    <!-- REQUIRED SCRIPTS -->
+    <!-- jQuery -->
+   @* <script src="plugins/jquery/jquery.min.js"></script>*@
+     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script> 
+
+    <!-- Bootstrap -->
+   @* <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>*@
+     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+    <!-- overlayScrollbars -->
+    <script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="administrador/dist/js/adminlte.js"></script>
+
+    <!-- PAGE PLUGINS -->
+    <!-- jQuery Mapael -->
+    <script src="plugins/jquery-mousewheel/jquery.mousewheel.js"></script>
+    <script src="plugins/raphael/raphael.min.js"></script>
+    <script src="plugins/jquery-mapael/jquery.mapael.min.js"></script>
+    <script src="plugins/jquery-mapael/maps/usa_states.min.js"></script>
+    <!-- ChartJS -->
+    <script src="plugins/chart.js/Chart.min.js"></script>
+
+    <!-- AdminLTE for demo purposes -->
+   @* <script src="administrador/dist/js/demo.js"></script>*@
+    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+    <script src="administrador/dist/js/pages/dashboard2.js"></script>
+   @* <script src="js/jquery.dataTables.min.js"></script>*@
+    @*<script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>*@
+
+</body>
+</html>
+@*<script src="lib/jquery/dist/jquery.min.js"></script>
+<script src="lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+ <script src="js/jquery.dataTables.min.js"></script>*@
+
+@section Scripts{
+
+
+<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js">  </script>
+
+<script src="https://cdn.datatables.net/buttons/2.3.2/js/dataTables.buttons.min.js"></script>
+
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js">  </script>
+ <script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.html5.min.js">  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js">  </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js">  </script> 
+    <script src="https://cdn.datatables.net/buttons/2.3.2/js/buttons.print.min.js"></script>
+
+<script type="text/javascript" src="https://raw.githubusercontent.com/swisnl/jQuery-contextMenu/master/src/jquery.contextMenu.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-contextmenu/2.6.4/jquery.contextMenu.min.js"></script>
+ <script src="administrador/context-menu.min.js"></script>
+ <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script type="text/javascript">
+     
+    $(document).ready(function () {
+       $("#myBtn").click(function(){
+    $("#modalCajaMov").modal({show: true});
+
+     $('#idempleados').val('');
+    $('#nombre').val('');
+    $('#apellidos').val('');
+    $('#logeo').val('');
+     $('#password').val('');
+     $('#iddepartamento').val('');
+     $('#idtipoempleado').val('');
+     $('#idhorario').val('');
+     $('#email').val('');
+     $('#codigoempleado').val('');
+    
+     $('#archivoImagenn').attr("src",'');
+
+
+      $('#respuesta_nombre').attr("style",'');
+      $('#respuesta_apellidos').attr("style",'');
+      $('#respuesta_logeo').attr("style",'');
+      $('#respuesta_password').attr("style",'');
+      $('#respuesta_iddepartamento').attr("style",'');
+      $('#respuesta_idtipoempleado').attr("style",'');
+      $('#respuesta_idhorario').attr("style",'');
+      $('#respuesta_email').attr("style",'');
+      $('#respuesta_codigoempleado').attr("style",'');
+      $('#respuesta_archivoImagen').attr("style",'');
+
+  });
+
+  
+        $('#tabla').DataTable({
+
+            
+         "language":{
+             url:"https://cdn.datatables.net/plug-ins/1.13.1/i18n/es-ES.json"
+         },
+         dom:"Bfrtip",
+         buttons:[
+             {
+             extend:"excelHtml5",
+             text:"Excel",
+             filename:"Reporte Asistencia",
+             title:"",
+             className:"btn-excel"
+            },
+            //"pageLength",
+             {
+             extend:"pdfHtml5",
+             text:"pdf",
+             filename:"Reporte Asistencia",
+             title:"",
+             className:"orange"
+            },
+
+            {
+             extend:"print",
+             text:"imprimir",
+             filename:"Reporte Asistencia",
+             title:"",
+             className:"btn-amarillo"
+            },
+
+
+
+             "pageLength",
+
+
+           
+         ]
+
+        
+           
+           
+           
+           
+            });
+          //$('[data-toogle]').jairo();
+    });
+
+
+
+
+
+    function alertar(idempleados) { 
+        //alert(idempleados);
+       
+    $.ajax({
+
+        //url:"/recuperarID/listarid/"+idempleados,
+        method:"GET",
+        data: {idempleados:idempleados},
+        url:"/recuperarID/listarid",
+        contentType: false,
+        dataType:"json",
+        success: function(libros) {
+            
+            var tipo = (libros[0].nombreD);
+            var id = (libros[0].iddepartamento);
+            var idtipoempleado = (libros[0].idtipoempleado);
+            var idhorario = (libros[0].idhorario);
+            //console.log(libros);
+            //alert(libros[0].imagen);
+            //imagen3=(libros[0].imagen);
+            //var  imagen3=(libros[0].imagen);
+            //String imagen=Convert.ToBase64String(libros.imagen);
+            //String imagemDadosURL = string.Format("data:image/png;base64,{0}",imagen);
+            btoa = (libros[0].imagen);
+
+            var cade = btoa;
+
+
+            //alert(cade);
+            //var timestamp = [];
+            //timestamp=(libros[0].imagen);
+
+             //var base64 =base64js.fromByteArray(timestamp);
+
+            //alert(base64);
+            //var cadenastring =btoa(timestamp);
+
+            var resultado = "data:image/png;base64,"+cade;
+
+            var imagen22 = new Image();
+            //imagen22.src = resultado;
+
+            //imagen22 = resultado;
+
+            //alert(imagen22);
+            //alert(resultado);
+            //alert(cadenastring);
+            $('#idempleados').val(libros[0].idempleados);
+            $('#nombre').val(libros[0].nombre);
+            $('#apellidos').val(libros[0].apellidos);
+            $('#logeo').val(libros[0].logeo);
+            $('#iddepartamento').val(id);
+            //$('#iddepartamento').val('<option value ="' + id + '">' + tipo + '</option>').text();
+            //$('#iddepartamento option:selected').val('<option value ="' + id + '">' + tipo + '</option>');
+            $('#idtipoempleado').val(idtipoempleado);
+             $('#idhorario').val(idhorario);
+            $('#email').val(libros[0].email);
+            $('#codigoempleado').val(libros[0].codigoempleado);
+            $('#password').val(libros[0].password);
+            $('#archivoImagenn').attr("src",resultado);
+            //$('#archivoImagenn').attr("src","data:image/png;base64,"+cadenastring);
+            //$('#archivoImagenn').val(imagen22);
+                //.attr("src",imagen22)
+                //.attr("width","50")
+                //.attr("height","50");
+
+            $("#modalCajaMov").modal('show');
+             $('#respuesta_nombre').attr("style",'');
+             $('#respuesta_apellidos').attr("style",'');
+             $('#respuesta_logeo').attr("style",'');
+             $('#respuesta_password').attr("style",'');
+              $('#respuesta_iddepartamento').attr("style",'');
+              $('#respuesta_idtipoempleado').attr("style",'');
+             $('#respuesta_idhorario').attr("style",'');
+             $('#respuesta_email').attr("style",'');
+             $('#respuesta_codigoempleado').attr("style",'');
+            $('#respuesta_archivoImagen').attr("style",'');
+
+           
+
+        },
+
+        error: function(errormessage) {
+
+
+            alert(errormessage.responseText);
+
+        }
+
+    });
+
+    return false;
+
+}
+
+
+//$('input').on('input', function(){
+  
+//    $('input').each(function() {
+      
+//      var boton      = $( '#btnguardar' );
+//      var esta_vacio = $( this ).prop( 'value' ) === '';
+      
+//      boton.prop('disabled', esta_vacio);        
+//    });
+//});
+
+
+      $("#btnguardar").click(function (e) {
+        e.preventDefault();
+      
+          var idempleados = $('#idempleados').val();
+
+          //alert(idempleados);
+          //if (idempleados === '') {
+
+
+          
+
+
+     var nombre = $('#nombre').val();
+      var apellidos = $('#apellidos').val();
+       var logeo = $('#logeo').val();
+        var password = $('#password').val();
+         var iddepartamento = $('#iddepartamento').val();
+          var idtipoempleado = $('#idtipoempleado').val();
+           var idhorario = $('#idhorario').val();
+            var email = $('#email').val();
+               var codigoempleado = $('#codigoempleado').val();
+                  var archivoImagen = $('#archivoImagen').val();
+          if ( /*$("#modalCajaMov input").val()==''*/ $('#nombre').val().length<1  && $('#apellidos').val().length<1 && $('#logeo').val().length<1 && $('#password').val().length <1 && $('#iddepartamento').val().length<1 && $('#idtipoempleado').val().length<1 && $('#idhorario').val().length<1 && $('#email').val().length<1 && $('#codigoempleado').val().length<1 && $('#archivoImagen').val().length<1 ){
+              alert('Error debe completar todos los datos');
+              $('#respuesta_nombre').attr("style","color:red");
+               $('#respuesta_apellidos').attr("style","color:red");
+                $('#respuesta_logeo').attr("style","color:red");
+                 $('#respuesta_password').attr("style","color:red");
+                  $('#respuesta_iddepartamento').attr("style","color:red");
+                   $('#respuesta_idtipoempleado').attr("style","color:red");
+                    $('#respuesta_idhorario').attr("style","color:red");
+                     $('#respuesta_email').attr("style","color:red");
+                      $('#respuesta_codigoempleado').attr("style","color:red");
+                       $('#respuesta_archivoImagen').attr("style","color:red");
+
+          }
+          //if(idempleados!='' || $("#exampleModal input").val()!='' ){
+
+          //    alert('datos llenos');
+          //}
+
+          else { 
+              $('#respuesta_nombre').attr("style","color:blue");
+               $('#respuesta_apellidos').attr("style","color:blue");
+                $('#respuesta_logeo').attr("style","color:blue");
+                 $('#respuesta_password').attr("style","color:blue");
+                  $('#respuesta_iddepartamento').attr("style","color:blue");
+                   $('#respuesta_idtipoempleado').attr("style","color:blue");
+                    $('#respuesta_idhorario').attr("style","color:blue");
+                     $('#respuesta_email').attr("style","color:blue");
+                      $('#respuesta_codigoempleado').attr("style","color:blue");
+                       $('#respuesta_archivoImagen').attr("style","color:blue");
+
+
+
+
+
+
+
+
+          var enviar = $('#josias')[0];
+         
+          var data = new FormData(enviar);
+          data.append('iddepartamento', $('#iddepartamento').prop('value'));
+           data.append('idtipoempleado', $('#idtipoempleado').prop('value'));
+            data.append('idhorario', $('#idhorario').prop('value'));
+        $.ajax({
+            url: "/mantenimiento/guardar",
+            dataType: 'json',
+            method: 'post',
+            contentType: false,
+            data: data,
+            processData: false,
+            success: function (result) {
+                alert(result.message);
+                 window.location = '/escritorio';
+
+                //$("#modalCajaMov").modal('hide');
+                 //return RedirectToAction("/Libro/Libro/Index");
+            },
+
+            error: function (result) {
+                alert(result.error);
+            }
+
+
+          });
+
+
+        }
+
+    });
+
+
+
+    $(".btn_eliminar").on("click",function(){
+            Swal.fire({
+              title: '¿Esta seguro de eliminar?',
+              icon: 'warning',
+              showCancelButton: true,
+              confirmButtonColor: '#3085d6',
+              cancelButtonColor: '#d33',
+              confirmButtonText: 'Si, eliminarlo',
+              cancelButtonText: 'Cancelar'
+            }).then((result) => {
+
+                if (result.isConfirmed) {
+                     var idempleados=$(this).data('id');
+                      jQuery.ajax({
+                          data: {idempleados:idempleados},
+                          url:"/mantenimiento/eliminarr/",
+                          method:"get",
+                          //type: "DELETE",
+                          dataType: "json",
+                          contentType: "application/json; charset=utf-8",
+                          success: function (data) {
+                              console.log(data)
+                              if(data.respuesta){
+                                  //tabla.ajax.reload();
+                                   window.location = '/escritorio';
+                              }
+                          },
+                          error: function (error) {
+                          },
+                          beforeSend: function () {
+                          }
+                      });
+                }
+
+            })
+
+
+            console.log(data);
+        })
+
+
+
+
+
+
+function generar(longitud) {
+
+    long =parseInt(longitud);
+    var caracteres = "abcdefghijkmnpqrtuvwxyzABCDEFGHIJKLMNPQRTUVWXYZ2346789";
+    var contrazeña = "";
+    for (i = 0; i < long; i++)contrazeña+=caracteres.charAt(Math.floor(Math.random()*caracteres.length));
+    $("#codigoempleado").val(contrazeña);
+}
+
+
+ var myMenu = [{
+    // This example uses Font Awesome Iconic Font.
+    icon: 'fa fa-home',
+    // Menu Label
+    label: '<a href="recuperarID/listarid">Editar</a>',
+   
+    //label:'@Url.Action("recuperarID", "listarid")?data=' +data,
+    // Callback
+    action: function(option, contextMenuIndex, optionIndex) {
+    var tipo = (option[0].nombre);
+     alert(tipo);
+    
+    
+    },
+
+    //var tipo = (option[0].nombre);
+    // alert(tipo);
+    // An array of submenu objects
+    submenu: null,
+    // is disabled?
+    disabled: false   //Disabled status of the option
+  },
+  {
+    icon: 'fa fa-user',
+    label: '<a href="perfil.html">Eliminar</a>',
+    action: function(option, contextMenuIndex, optionIndex) {},
+    submenu: null,
+    disabled: false
+  },
+  {
+    icon: 'fa fa-envelope',
+    label: '<a href="contacto.html">Contáctanos</a>',
+    action: function(option, contextMenuIndex, optionIndex) {},
+    submenu: null,
+    disabled: false
+  },
+  {
+    //Menu separator
+    separator: true
+  },
+  {
+    icon: 'fa fa-share',
+    label: 'Compartir',
+    action: function(option, contextMenuIndex, optionIndex) {},
+    submenu: [{ // sub menus
+      icon: 'fa fa-facebook',
+      label: '<a href="https://www.facebook.com/Baulphp-1484048218538757/" target="_blank">Facebook</a>',
+      action: function(option, contextMenuIndex, optionIndex) {},
+      submenu: null,
+      disabled: false
+    },
+    {
+      icon: 'fa fa-twitter',
+      label: '<a href="https://twitter.com/?lang=es" target="_blank">Twitter</a>',
+      action: function(option, contextMenuIndex, optionIndex) {},
+      submenu: null,
+      disabled: false
+    },
+    {
+      icon: 'fa fa-google-plus',
+      label: '<a href="https://plus.google.com/" target="_blank">Google Plus</a>',
+      action: function(option, contextMenuIndex, optionIndex) {},
+      submenu: null,
+      disabled: false
+    }],
+    disabled: false
+  },
+];
+
+
+$('.context-menu-one').on('contextmenu', function(e) {
+  e.preventDefault();
+    var userId = $(this).data('id');
+    alert(userId);
+   
+  superCm.createMenu(myMenu, e);
+    var data = new FormData(userId);
+});
+
+
+
+//$(function(){
+//    $('#tabla').contextMenu({
+//        selector: 'li', 
+//        callback: function(key, options) {
+//            var m = "clicked: " + key + " on " + $(this).text();
+//            window.console && console.log(m) || alert(m); 
+//        },
+//        items: {
+//            "edit": {name: "Edit", icon: "edit"},
+//            "cut": {name: "Cut", icon: "cut"},
+//            "copy": {name: "Copy", icon: "copy"},
+//            "paste": {name: "Paste", icon: "paste"},
+//            "delete": {name: "Delete", icon: "delete"},
+//            "sep1": "---------",
+//            "quit": {name: "Quit", icon: function($element, key, item){ return 'context-menu-icon context-menu-icon-quit'; }}
+//        }
+//    });
+//});
+</script>
+
+}
+
+
+
+   @*<script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/jquery.dataTables.min.js"></script>*@
+
+
+
+
+
+
+

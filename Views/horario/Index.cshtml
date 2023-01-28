@@ -1,0 +1,710 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+
+@section ESTILOS{
+
+ @*   <link href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css" rel="stylesheet"/>*@
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-contextmenu/2.9.2/jquery.contextMenu.min.css"/>
+      <link rel="stylesheet" href="administrador/context-menu.min.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-timepicker/1.14.0/jquery.timepicker.min.css"/>
+
+
+<link rel="stylesheet" href="//jonthornton.github.io/jquery-timepicker/jquery.timepicker.css">
+
+}
+
+@using Microsoft.AspNetCore.Http;
+@ViewBag.entidad;
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <style>
+        .sidebar-dark-primary{
+
+            background: #455279 !important;
+
+
+
+
+        }
+
+        #modalCajaMov{
+           /* background-color:rgba(0,0,0,0.5)!important;*/
+
+         /*  background-color:white;*/
+
+
+        }
+
+  .input_container{
+  display: flex;
+  gap: 12px;
+}
+
+.input_container input{
+  width: 80%;
+}
+
+
+    </style>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AdminLTE 3 | Dashboard 2</title>
+
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+    <!-- overlayScrollbars -->
+    <link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="administrador/dist/css/adminlte.min.css">
+    <link rel="stylesheet" href="css/jquery.dataTables.min.css">
+    @*<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">*@
+</head>
+<body class="hold-transition  sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+    <div class="wrapper">
+
+        <!-- Preloader -->
+        <div class="preloader flex-column justify-content-center align-items-center">
+@*            <img class="animation__wobble" src="administrador/dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
+*@        </div>
+
+        <!-- Navbar -->
+        <nav class="main-header navbar navbar-expand navbar-dark">
+            <!-- Left navbar links -->
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+                </li>
+                <li class="nav-item d-none d-sm-inline-block">
+                    @*<a href="index3.html" class="nav-link">Homes</a>*@
+                </li>
+                <li class="nav-item d-none d-sm-inline-block">
+                    @*<a href="#" class="nav-link">Contact</a>*@
+                </li>
+            </ul>
+
+
+
+            <!-- Right navbar links -->
+            <ul class="navbar-nav ml-auto">
+                <!-- Navbar Search -->
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="navbar-search" href="#" role="button">
+                       @* <i class="fas fa-search"></i>*@
+                    </a>
+                    <div class="navbar-search-block">
+                        <form class="form-inline">
+                            <div class="input-group input-group-sm">
+                                <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
+                                <div class="input-group-append">
+                                    <button class="btn btn-navbar" type="submit">
+                                    
+                                        @*<i class="fas fa-search"></i>*@
+                                    </button>
+                                    <button class="btn btn-navbar" type="button" data-widget="navbar-search">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </li>
+
+                <!-- Messages Dropdown Menu -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link" data-toggle="dropdown" href="#">
+                       @* <i class="far fa-comments"></i>*@
+                       @* <span class="badge badge-danger navbar-badge">3</span>*@
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                        <a href="#" class="dropdown-item">
+                            <!-- Message Start -->
+                            <div class="media">
+                                <img src="administrador/dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
+                                <div class="media-body">
+                                    <h3 class="dropdown-item-title">
+                                        Brad Diesel
+                                        <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
+                                    </h3>
+                                    <p class="text-sm">Call me whenever you can...</p>
+                                    <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+                                </div>
+                            </div>
+                            <!-- Message End -->
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item">
+                            <!-- Message Start -->
+                            <div class="media">
+                                <img src="administrador/dist/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
+                                <div class="media-body">
+                                    <h3 class="dropdown-item-title">
+                                        John Pierce
+                                        <span class="float-right text-sm text-muted"><i class="fas fa-star"></i></span>
+                                    </h3>
+                                    <p class="text-sm">I got your message bro</p>
+                                    <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+                                </div>
+                            </div>
+                            <!-- Message End -->
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item">
+                            <!-- Message Start -->
+                            <div class="media">
+                                <img src="administrador/dist/img/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
+                                <div class="media-body">
+                                    <h3 class="dropdown-item-title">
+                                        Nora Silvester
+                                        <span class="float-right text-sm text-warning"><i class="fas fa-star"></i></span>
+                                    </h3>
+                                    <p class="text-sm">The subject goes here</p>
+                                    <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+                                </div>
+                            </div>
+                            <!-- Message End -->
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
+                    </div>
+                </li>
+                <!-- Notifications Dropdown Menu -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link" data-toggle="dropdown" href="#">
+                      @*  <i class="far fa-bell"></i>*@
+                       @* <span class="badge badge-warning navbar-badge">15</span>*@
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                        <span class="dropdown-item dropdown-header">15 Notifications</span>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item">
+                            <i class="fas fa-envelope mr-2"></i> 4 new messages
+                            <span class="float-right text-muted text-sm">3 mins</span>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item">
+                            <i class="fas fa-users mr-2"></i> 8 friend requests
+                            <span class="float-right text-muted text-sm">12 hours</span>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item">
+                            <i class="fas fa-file mr-2"></i> 3 new reports
+                            <span class="float-right text-muted text-sm">2 days</span>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="fullscreen" href="#" role="button">
+                       @* <i class="fas fa-expand-arrows-alt"></i>*@
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
+                        @*<i class="fas fa-th-large"></i>*@
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <!-- /.navbar -->
+        <!-- Main Sidebar Container -->
+        <aside class="main-sidebar sidebar-dark-primary elevation-4">
+            <!-- Brand Logo -->
+            <a href="index3.html" class="brand-link">
+@*                <img src="administrador/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+*@                <span class="brand-text font-weight-light">Web Genius J.P</span>
+            </a>
+
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <!-- Sidebar user panel (optional) -->
+                <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                    <div class="image">
+                        <img src="@ViewBag.imagenes" class="img-circle elevation-2" style="width: 50px; height: 50px;" />
+                    </div>
+                    <div class="info">
+                        @*<a href="#" class="d-block">Alexander Pierce</a>*@
+                        @*<li>@TempData["nombre"].ToString();</li>*@
+                        <li>@Context.Session.GetString("sess_1")</li>
+<a class="btn btn btn-primary btn-xs" title="SALIR" href="@Url.Action("salirr","escritorio")"><span class="fas fa-sign-out-alt"></span> </a>
+                    </div>
+                </div>
+
+                <!-- Sidebar Menu -->
+                <nav class="mt-2">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                        <!-- Add icons to the links using the .nav-icon class
+                        with font-awesome or any other icon font library -->
+                           <li class="header">MENÚ DE NAVEGACIÓN</li>
+                        <li class="nav-item menu-open">
+
+                          
+
+                            <ul class="nav nav-treeview">
+                               @*    <a href="#" class="nav-link active">
+                                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                                       
+                                        <p>Panel</p>
+                                    </a>*@
+
+                                <li class="nav-item">
+                                    <a href="@Url.Action("index","Panel")" class="nav-link active">
+                                       <i class="fa fa-home" aria-hidden="true"></i>
+                                        <p>Escritorio</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="@Url.Action("index","escritorio")" class="nav-link active">
+                                       <i class="fa fa-user" aria-hidden="true"></i>
+                                        <p>Usuarios</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="@Url.Action("index","departamento")" class="nav-link active">
+                                       <i class='fas fa-book-open'></i>
+                                        <p>Departamento</p>
+                                    </a>
+                                </li>
+                                    <li class="nav-item">
+                                    <a href="@Url.Action("index","Horario")" class="nav-link active">
+                                          <i class='fas fa-chalkboard-teacher'></i>
+                                        <p>Horarios</p>
+                                    </a>
+                                </li>
+
+
+                                <li class="nav-item">
+                                    <a href="@Url.Action("index","ListarAsistencia")" class="nav-link active">
+                                       <i class='fas fa-chalkboard-teacher'></i>
+                                        <p>Asistencias</p>
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                  <a href="@Url.Action("index","ReporteAsistencia")" class="nav-link active">
+                                         <i class="fa fa-file" aria-hidden="true"></i>
+                                        <p>reporte</p>
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </li>
+
+                    </ul>
+                </nav>
+                <!-- /.sidebar-menu -->
+            </div>
+            <!-- /.sidebar -->
+        </aside>
+
+
+
+
+        @if(ViewBag.entidad==null){
+              <div class="content-wrapper">
+           @*<div id="jairo"></div>*@
+            <div class="container">
+                 <button type="button" class="btn btn-success btn-md" id="myBtn">AGREGAR</button>
+                @*<button class="btn btn-warning" id="btnagregar" data-toggle="modal" data-target="#modalCajaMov">Agregar</button>*@
+
+            </div>
+            <br />
+               <div class="panel-body table-responsive" id="listadoregistros">
+                 <table id="tabla" class="table table-striped table-condensed table-hover">
+            
+                    <thead>
+                        <tr>
+                   
+                            <th>Id</th>
+                            <th>Entrada</th>
+                            <th>Salida</th>
+                             <th><i class='fas fa-edit'></i></th>
+                     <th><i class="fa fa-trash" aria-hidden="true"></i></th> 
+                          
+
+                        </tr>
+                    </thead>
+
+
+                    <tbody>
+                      
+                    </tbody>
+
+                  </table>
+
+              </div>
+
+
+        </div>
+
+
+
+
+
+        }
+        else{
+
+
+
+        
+
+
+
+        <div class="content-wrapper">
+
+
+
+
+            <!-- Content Header (Page header) -->
+
+
+           @*<div id="jairo"></div>*@
+            <div class="container">
+                 <button type="button" class="btn btn-success btn-md" id="myBtn">AGREGAR</button>
+                @*<button class="btn btn-warning" id="btnagregar" data-toggle="modal" data-target="#modalCajaMov">Agregar</button>*@
+
+            </div>
+            <br />
+               <div class="panel-body table-responsive" id="listadoregistros">
+                 <table id="tabla" class="table table-striped table-condensed table-hover">
+            
+                    <thead>
+                        <tr>
+                   
+                            <th>Id</th>
+                            <th>Entrada</th>
+                            <th>Salida</th>
+                             <th><i class='fas fa-edit'></i></th>
+                     <th><i class="fa fa-trash" aria-hidden="true"></i></th> 
+                          
+
+                        </tr>
+                    </thead>
+
+
+                    <tbody>
+                       
+
+                        @foreach (var item in ViewBag.entidad)
+                        {
+                          
+                            <tr>
+                               <td>@item.idhorario</td> 
+                              <td>@item.horaentrada</td> 
+                               <td>@item.horasalida</td>
+                                            
+                                <td>
+ <a  class="btn btn btn-primary btn-xs context-menu-one" data-id= "@item.idhorario" onclick="return editar('@item.idhorario')" href=""><i class='fas fa-edit'></i></a>
+
+                               </td>
+
+                               <td>
+ <a  class="btn btn btn-primary btn-xs context-menu-one  btn_eliminar" id="btn_eliminar" data-id= "@item.idhorario" ><i class="fa fa-trash" aria-hidden="true"></i</a>
+
+                               </td>
+
+                            </tr>
+                            
+                               
+                        }
+
+
+
+                    </tbody>
+
+                  </table>
+
+              </div>
+
+
+            </div>
+
+        }
+    
+        <!-- Main Footer -->
+        @*<footer class="main-footer">
+                <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
+                All rights reserved.
+                <div class="float-right d-none d-sm-inline-block">
+                    <b>Version</b> 3.2.0
+                </div>
+            </footer>*@
+
+    </div>
+
+
+
+    <div class="modal" tabindex="-1" id="modalCajaMov" role="dialog">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+                @*<form method="post" asp-controller="Libro" asp-action="create">*@
+                <div class="modal-header">
+                    <h5 class="modal-title">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                    <form  id="josias" method="post">
+                    <div class="form-group">
+                            <label class="control-label">id</label>
+                     <input type="text" class="form-control"  id="idhorario" name="idhorario" value="" readonly />
+                        </div>
+                      
+                  <div class="form-group">
+                 <label class="control-label" id="respuesta_time1">hora entrada</label>
+              <input type="text" class="form-control" id="time1" name="time1" autocomplete="off" />
+                  </div>
+            
+                    <div class="form-group">
+                 <label class="control-label" id="respuesta_time2">hora salida</label>
+              <input type="text" class="form-control" id="time2" name="time2" autocomplete="off" />
+                  </div>
+                      
+
+
+                    </form>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary" id="btnguardar">Guardar</button>
+                    <input type="button" class="btn btn-default" data-dismiss="modal" value="cancel" />
+                    <input type="hidden" name=" id" id="id" />
+                   
+                </div>
+              
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <!-- ./wrapper -->
+    <!-- REQUIRED SCRIPTS -->
+    <!-- jQuery -->
+    <script src="plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- overlayScrollbars -->
+    <script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="administrador/dist/js/adminlte.js"></script>
+
+    <!-- PAGE PLUGINS -->
+    <!-- jQuery Mapael -->
+    <script src="plugins/jquery-mousewheel/jquery.mousewheel.js"></script>
+    <script src="plugins/raphael/raphael.min.js"></script>
+    <script src="plugins/jquery-mapael/jquery.mapael.min.js"></script>
+    <script src="plugins/jquery-mapael/maps/usa_states.min.js"></script>
+    <!-- ChartJS -->
+    <script src="plugins/chart.js/Chart.min.js"></script>
+
+    <!-- AdminLTE for demo purposes -->
+   @* <script src="administrador/dist/js/demo.js"></script>*@
+    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+    <script src="administrador/dist/js/pages/dashboard2.js"></script>
+    <script src="js/jquery.dataTables.min.js"></script>
+    @*<script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>*@
+
+</body>
+</html>
+@*<script src="lib/jquery/dist/jquery.min.js"></script>
+<script src="lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+ <script src="js/jquery.dataTables.min.js"></script>*@
+
+@section Scripts{
+@*<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js">  </script>*@
+
+<script type="text/javascript" src="https://raw.githubusercontent.com/swisnl/jQuery-contextMenu/master/src/jquery.contextMenu.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-contextmenu/2.6.4/jquery.contextMenu.min.js"></script>
+ <script src="administrador/context-menu.min.js"></script>
+ <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-timepicker/1.14.0/jquery.timepicker.js"></script>
+
+ @* <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.3/jquery-ui.js"></script>*@
+<script src="//jonthornton.github.io/jquery-timepicker/jquery.timepicker.js"></script>
+
+ @*<script src="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>*@
+
+ <script type="text/javascript">
+     $(document).ready(function () {
+         
+         $("#myBtn").click(function(){
+    $("#modalCajaMov").modal({show: true});
+    $('#time1').val('');
+    $('#time2').val('');
+    $('#idhorario').val('');
+     $('#respuesta_time1').attr("style", '');
+     $('#respuesta_time2').attr("style", '');
+  });
+
+
+         $('#tabla').DataTable();
+
+
+          });
+
+
+
+
+     $(function() {
+   $('#time1').timepicker();
+    $('#time2').timepicker();
+ });
+
+
+  $("#btnguardar").click(function (e) {
+        e.preventDefault();
+
+        var time1 = $('#time1').val();
+      var time2 = $('#time2').val();
+
+        if ( /*$('#modalCajaMov input').val()==''*/  $('#time1').val().length<1 &&  $('#time2').val().length<1 ) {
+             alert('Error debe completar todos los datos');
+             $('#respuesta_time1').attr("style", "color:red");
+             $('#respuesta_time2').attr("style", "color:red");
+
+         } 
+         else{
+
+              $('#respuesta_time1').attr("style", "color:blue");
+             $('#respuesta_time2').attr("style", "color:blue");
+
+
+         
+          var enviar = $('#josias')[0];
+         
+          var data = new FormData(enviar);
+          //data.append('iddepartamento', $('#iddepartamento').prop('value'));
+          // data.append('idtipoempleado', $('#idtipoempleado').prop('value'));
+        $.ajax({
+            url: "/horario/guardar",
+            dataType: 'json',
+            method: 'post',
+            contentType: false,
+            data: data,
+            processData: false,
+            success: function (result) {
+                alert(result.message);
+                 window.location = '/horario';
+
+                //$("#modalCajaMov").modal('hide');
+                 //return RedirectToAction("/Libro/Libro/Index");
+            },
+
+            error: function (result) {
+                alert(result.error);
+            }
+
+
+        });
+
+         }
+
+
+    });
+
+     function editar(idhorario) { 
+        //alert(idhorario);
+       
+    $.ajax({
+
+        //url:"/recuperarID/listarid/"+idempleados,
+        method:"GET",
+        data: {idhorario:idhorario},
+        url:"/horario/listaridhorario",
+        contentType: false,
+        dataType:"json",
+        success: function(horarios) {
+            alert(horarios[0].horaentrada);
+
+           $('#time1').val(horarios[0].horaentrada);
+            $('#time2').val(horarios[0].horasalida);
+            $('#idhorario').val(horarios[0].idhorario);
+
+            $("#modalCajaMov").modal('show');
+             $('#respuesta_time1').attr("style", '');
+              $('#respuesta_time2').attr("style", '');
+        },
+
+        error: function(errormessage) {
+
+
+            alert(errormessage.responseText);
+
+        }
+
+    });
+
+    return false;
+
+
+     }
+
+
+
+     $(".btn_eliminar").on("click",function(){
+            Swal.fire({
+              title: '¿Esta seguro de eliminar?',
+              icon: 'warning',
+              showCancelButton: true,
+              confirmButtonColor: '#3085d6',
+              cancelButtonColor: '#d33',
+              confirmButtonText: 'Si, eliminarlo',
+              cancelButtonText: 'Cancelar'
+            }).then((result) => {
+
+                if (result.isConfirmed) {
+                     var idhorario=$(this).data('id');
+                      jQuery.ajax({
+                          data: {idhorario:idhorario},
+                          url:"/horario/eliminarhorario/",
+                          method:"get",
+                          //type: "DELETE",
+                          dataType: "json",
+                          contentType: "application/json; charset=utf-8",
+                          success: function (data) {
+                              console.log(data)
+                              if(data.respuesta){
+                                  //tabla.ajax.reload();
+                                   window.location = '/horario';
+                              }
+                          },
+                          error: function (error) {
+                          },
+                          beforeSend: function () {
+                          }
+                      });
+                }
+
+            })
+
+
+            console.log(data);
+        })
+
+
+
+    
+
+ </script>
+
+
+
+}

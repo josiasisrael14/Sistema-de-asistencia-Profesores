@@ -1,0 +1,81 @@
+﻿
+@model REGISTROASISTENCIA.Models.entidad
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+
+<div class="row">
+    <div class="col-md-3 form-horizontal">
+        <form action="/registrogeneral/login" method="post">
+            <br />
+            <input type="text" class="form-control" name="logeo" placeholder="Usuario" required autofocus>
+            <br />
+            <input type="password" class="form-control" name="password" placeholder="Contraseña" required>
+            <br />
+            <button class="btn btn-primary" type="submit">
+                Iniciar sesión
+
+            </button>
+             <a href="@Url.Action("index","RegistrarAsistencia")">registrar asistencia</a>
+            <label class="checkbox pull-right">
+                <input type="checkbox" name="rme">
+                <a href="@Url.Action("index","RegistrarAsistencia")"></a>
+               @* <label></label>*@
+            </label>
+        </form>
+    </div>
+</div>
+
+@*@{
+    if (TempData["msg"] != null)
+    {
+        <script>
+            alert('@TempData["msg"]')
+        </script>
+    }
+}*@
+
+@*<script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>*@
+
+@*<script type="text/javascript">
+
+
+        $("#btningresar").click(function (e) {
+
+            e.preventDefault();
+
+            var enviar = new FormData();
+            enviar.append('usuario', $("#usuario").prop('value'));
+            enviar.append('contrazeña', $("#contrazeña").prop('value'));
+
+            $.ajax({
+
+                url: "/registrogeneral/login",
+                dataType: 'json',
+                method: 'post',
+                contentType: false,
+                data: enviar,
+                processData: false,
+                success: function (result) {
+                    alert(result.message);
+                    //window.location = '/Libro/index';
+
+                    //$("#modalCajaMov").modal('hide');
+                    //return RedirectToAction("/Libro/Libro/Index");
+                },
+
+                error: function (result) {
+                    alert(result.error);
+                }
+
+            });
+
+
+
+
+        });
+
+    </script>*@

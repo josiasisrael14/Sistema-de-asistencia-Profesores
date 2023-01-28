@@ -1,0 +1,213 @@
+﻿@section ESTILOS{
+	<link rel="stylesheet" href="administrador/bootstrap.min.css">
+
+
+	   }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Formulario</title>
+	<link rel="stylesheet" href="boton.css">
+	<link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">
+
+	<style type="text/css">
+
+	
+
+
+		body{
+			
+			font-family: Arial;
+			/*background-color: #256999;*/
+			box-sizing: border-box;
+			padding: 100px;
+		}
+
+		form{
+			background-color: white;
+			border-radius: 0 0 3px 3px;
+			color: #999;
+			font-size: 0.8em;
+			padding: 20px;
+			margin: 0 auto;
+			width: 330px;
+		}
+
+		input, textarea{
+			border: 0;
+			outline: none;
+
+			width: 280px;
+		}
+
+		.field{
+			border: solid 1px #ccc;
+			border-radius: 0 4px 4px 0; 
+			padding: 10px;
+			width: 240px;
+		}
+
+		.field:focus{
+			border-color: #18A383;
+		}
+
+		.center-content{
+			text-align: center;
+		}
+
+		.field-container div{
+			display: inline-block;
+			vertical-align: top;
+		}
+
+		.field-container i{
+			background-color: #eee;
+			border-radius: 4px 0 0 4px; 
+			color: #888;
+			padding: 10px 10px 11px 10px;
+			border: solid 1px #ccc;
+			max-height: 35px;
+			margin-right: -5px;
+			vertical-align: top;
+		}
+
+		#menu ul{
+			list-style: none;
+			margin: 0;
+			padding: 0;
+		}
+
+		#menu ul li{
+			display: inline-block;
+			width: 49%;
+			margin-right: 0px;
+		}
+
+		#menu ul li a{
+			background-color: #ccc;
+			color: #222;
+			display: block;
+			padding: 20px 20px;
+			text-decoration: none;
+		}
+		#menu ul li a:hover{
+			background-color: #eee;
+		}
+
+		#formularios, #menu{
+			margin: 0 auto;
+			width: 330px;
+		}
+
+		
+		.active{
+			background-color: white !important;
+		}
+
+		.columns >div{
+			width: 50%;
+			display: inline-block;
+			vertical-align: top;
+			margin-right: -4px;
+		}
+		.columns .field{
+			width: 80px;
+		}
+
+		
+
+	</style>
+</head>
+<body style="background-image: url('@Url.Content("~/images/fondo_imagen_sistema.jpg")');">
+
+	<div id="formularios">
+		
+
+		<form action="/RegistrarAsistencia/registrar" method="post">
+			
+
+				<div class="field-container">
+					<p> Codigo Asistencia:</p>
+					<i class="fa fa-user-circle fa-lg" aria-hidden="true"></i>	
+					<input type="text" name="codigoempleado" class="field" placeholder="*******" required> <br/>
+				</div>
+			
+
+			<br/>
+
+		
+			
+			<p class="center-content">
+
+			
+<button type="submit" class="btn btn-primary"  id="salida">Entrada</button>
+	
+<button type="submit" class="btn btn-danger" formaction="RegistrarAsistencia/registrarS" id="salida">Salida</button>
+			</p>
+
+
+		
+
+
+			  @if(@TempData["entrada"]!=null && @TempData["entradas"]!=null)
+			 {
+
+ <div class="form-outline mb-4">
+ <div class="alert alert-danger" role="alert"><center>@TempData["entrada"] @TempData["entradas"] @TempData["fecha"] @TempData["tipoentrada"]</center></div>
+ </div>
+
+
+			 }
+			 	 @if(@TempData["msg"]!=null)
+			 {
+
+				  <div class="form-outline mb-4">
+                  <div class="alert alert-danger" role="alert"><center>@TempData["msg"]</center></div>
+                  </div>
+
+
+			 }
+
+			 @if(@TempData["mensajes"]!=null){
+
+				   <div class="form-outline mb-4">
+                  <div class="alert alert-danger" role="alert"><center>@TempData["mensajes"]</center></div>
+                  </div>
+
+
+			 }
+
+
+
+
+		</form>	
+
+		
+			
+	</div>
+	
+	<script src="js1/jquery.js"></script>
+	<script>
+		
+	</script>
+	
+	
+	
+
+</body>
+
+</html>
+@section Scripts{
+
+
+	 <script src="administrador/bootstrap.bundle.min.js"></script>
+
+
+
+	 <script type="text/javascript">
+    
+
+	 </script>
+
+}
