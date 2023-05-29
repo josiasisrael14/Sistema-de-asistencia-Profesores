@@ -37,7 +37,7 @@ Hola soy jairo! soy **Programador Backend**:iphone:, realice un sistema de regis
   
   ![image](https://github.com/josiasisrael14/Sistema-de-asistencia-Profesores/assets/43103053/48e7c19e-f9df-4e22-b370-88334bd73015)
   
-  <h1>Veamos algunos controladores Controlador</h1>
+  <h1>Veamos algunos controladores </h1>
   
   ![image](https://github.com/josiasisrael14/Sistema-de-asistencia-Profesores/assets/43103053/41aa28c2-8321-425f-b74a-488e56e33498)
 
