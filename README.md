@@ -34,6 +34,10 @@ Hola soy jairo! soy **Programador Backend**:iphone:, realice un sistema de regis
   <h1>Las entidades(clases)</h1></br>
   
   ![image](https://github.com/josiasisrael14/Sistema-de-asistencia-Profesores/assets/43103053/54e1ab38-c166-4933-aed0-8affa3057b28)
+  
+  ![image](https://github.com/josiasisrael14/Sistema-de-asistencia-Profesores/assets/43103053/48e7c19e-f9df-4e22-b370-88334bd73015)
+
+
 
 
   
