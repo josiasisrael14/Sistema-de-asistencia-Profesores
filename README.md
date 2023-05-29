@@ -43,6 +43,10 @@ Hola soy jairo! soy **Programador Backend**:iphone:, realice un sistema de regis
   
   
   ![image](https://github.com/josiasisrael14/Sistema-de-asistencia-Profesores/assets/43103053/70db6faa-6be0-4839-9dc1-17087ac06203)
+  
+  <h1>Procedimientos Almacenados</h1>
+  
+  
 
 
 
